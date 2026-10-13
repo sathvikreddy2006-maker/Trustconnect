@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: trustconnect
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/trusts
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DB_HOST
+        fromDatabase:
+          name: trustconnect-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: trustconnect-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: trustconnect-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: trustconnect-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: trustconnect-db
+          property: password
+
+databases:
+  - name: trustconnect-db
+    databaseName: trustconnect
+    user: trustconnect
+    plan: free
+    region: oregon
+    postgresMajorVersion: "17"
