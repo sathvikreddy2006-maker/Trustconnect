@@ -1,0 +1,20 @@
+
+# Java build files (root and backend)
+target/
+backend/target/
+
+# Node.js dependencies
+frontend/node_modules/
+
+# Frontend build output
+frontend/dist/
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# IDE files
+.classpath
+.project
+.settings/
